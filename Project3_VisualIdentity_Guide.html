@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Project 3 — The Visual Identity | DecodeLabs 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green:       #4A7C3F;
+    --green-light: #EAF3DE;
+    --green-dark:  #2E5227;
+    --brown:       #5C3D2E;
+    --brown-light: #F5EDE5;
+    --gold:        #C8A84B;
+    --gold-light:  #FDF3D8;
+    --cream:       #F5F0E8;
+    --text:        #1C1C1C;
+    --muted:       #6B6560;
+    --border:      #DDD8CE;
+    --red-x:       #C0392B;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--green-dark);
+    color: white;
+    padding: 60px 48px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(200,168,75,0.18);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 40px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--green-dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.15;
+    color: white;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    max-width: 560px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-meta {
+    margin-top: 28px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-meta span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .hero-meta strong { color: rgba(255,255,255,0.9); }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 900px; margin: 0 auto; padding: 52px 32px 80px; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+  }
+  .card-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card-grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+  @media(max-width:640px) {
+    .card-grid2, .card-grid3 { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 32px; }
+    .hero { padding: 40px 24px; }
+    .page { padding: 36px 20px 60px; }
+  }
+
+  /* ── DELIVERABLE BOXES ── */
+  .deliverable {
+    background: var(--green-light);
+    border: 1.5px solid #B7D89C;
+    border-radius: 14px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .d-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--green);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .d-title { font-size: 15px; font-weight: 700; color: var(--green-dark); margin-bottom: 4px; }
+  .d-desc { font-size: 13px; color: #3B6D11; }
+
+  /* ── COLOR SWATCHES ── */
+  .swatch-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .swatch-row:last-child { border-bottom: none; }
+  .swatch {
+    width: 52px; height: 52px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .swatch-name { font-size: 15px; font-weight: 600; color: var(--text); }
+  .swatch-hex  { font-size: 12px; color: var(--muted); font-family: monospace; margin-top: 2px; }
+  .swatch-use  { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .badge-red {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #FDECEA;
+    color: var(--red-x);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid #F5B7B1;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .font-demo {
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--green-dark);
+    margin: 8px 0 4px;
+  }
+  .font-serif  { font-family: 'Playfair Display', serif; font-weight: 700; }
+  .font-sans   { font-family: 'Montserrat', sans-serif; font-weight: 500; }
+  .font-sub    { font-size: 12px; color: var(--muted); }
+  .font-use    { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+  /* ── GRID RULE ── */
+  .grid-demo {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 16px 0 8px;
+  }
+  .grid-col {
+    height: 32px;
+    background: rgba(74,124,63,0.07);
+    border-right: 1px solid rgba(74,124,63,0.2);
+  }
+  .grid-col:last-child { border-right: none; }
+  .spacing-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .chip {
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid #B7D89C;
+    font-family: monospace;
+  }
+
+  /* ── SCREENS ── */
+  .screen-box {
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .screen-header {
+    background: var(--green-dark);
+    color: white;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .screen-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+  }
+  .screen-body { background: white; padding: 20px; }
+  .screen-tag {
+    display: inline-block;
+    background: var(--gold-light);
+    color: #7A5A1E;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .screen-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F0EDE7;
+    font-size: 13px;
+  }
+  .screen-item:last-child { border-bottom: none; }
+  .screen-item .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  /* ── STEPS ── */
+  .step-row {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .step-row:last-child { border-bottom: none; }
+  .step-num {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--green);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .step-desc  { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  /* ── BUTTON STATES ── */
+  .btn-states {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .btn-arrow { font-size: 22px; color: var(--muted); }
+  .btn-state { text-align: center; }
+  .btn-state .lbl { font-size: 11px; color: var(--muted); margin-top: 6px; }
+  .btn-default {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: default;
+  }
+  .btn-loading {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    background: var(--green-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin: 0 auto;
+  }
+  .btn-success {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 auto;
+  }
+
+  /* ── CHECKLIST ── */
+  .check-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .check-row:last-child { border-bottom: none; }
+  .check-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--green-light);
+    border: 1.5px solid #B7D89C;
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── TRUST FEATURES ── */
+  .trust-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .trust-icon { font-size: 24px; margin-bottom: 8px; }
+  .trust-title { font-size: 14px; font-weight: 700; color: var(--green-dark); margin-bottom: 6px; }
+  .trust-desc  { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ── ANTI-PATTERN ── */
+  .anti {
+    background: #FEF0EF;
+    border: 1.5px solid #F5C6C2;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .anti-x {
+    width: 40px; height: 40px;
+    background: var(--red-x);
+    border-radius: 8px;
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .anti-text { font-size: 13px; color: #922B21; line-height: 1.55; }
+  .anti-text strong { font-weight: 700; display: block; margin-bottom: 2px; }
+
+  /* ── IMAGERY ── */
+  .img-rule {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .img-do {
+    flex: 1;
+    background: var(--green-light);
+    padding: 18px;
+    border-right: 1px solid var(--border);
+  }
+  .img-dont {
+    flex: 1;
+    background: #FEF0EF;
+    padding: 18px;
+  }
+  .img-label-do   { font-size: 12px; font-weight: 700; color: var(--green); letter-spacing:.08em; text-transform:uppercase; margin-bottom: 8px; }
+  .img-label-dont { font-size: 12px; font-weight: 700; color: var(--red-x); letter-spacing:.08em; text-transform:uppercase; margin-bottom: 8px; }
+  .img-rule li { font-size: 13px; color: var(--muted); margin-left: 16px; margin-bottom: 4px; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 28px;
+    font-size: 13px;
+  }
+  .footer a { color: var(--gold); text-decoration: none; }
+
+  /* ── SPACING HELPER ── */
+  .mt { margin-top: 40px; }
+  .mt-sm { margin-top: 24px; }
+
+  /* print */
+  @media print {
+    body { background: white; }
+    .hero { background: #2E5227 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">DecodeLabs · Batch 2026</div>
+  <h1>Project 3: The Visual Identity</h1>
+  <p>Premium Organic Food Delivery App — High-Fidelity UI Design Brief. Master color, typography, and spacing to communicate trust, health, and speed through design.</p>
+  <div class="hero-meta">
+    <span>📁 <strong>UI/UX Design Track</strong></span>
+    <span>🛠 <strong>Tool: Figma / Adobe XD</strong></span>
+    <span>🏅 <strong>Milestone: Earn Your Badge</strong></span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- SCENARIO -->
+  <div class="section-label">Scenario</div>
+  <h2>What You're Building</h2>
+  <div class="card" style="border-left: 4px solid var(--green); padding-left: 20px;">
+    <p style="font-size:15px; color:var(--muted); line-height:1.8;">A premium <strong style="color:var(--text)">Organic Food Delivery Service</strong> needs a modern, "fresh" brand identity. The visual system must communicate <strong style="color:var(--green)">trust</strong>, <strong style="color:var(--green)">health</strong>, and <strong style="color:var(--green)">speed</strong> through color and typography — transforming wireframes into a premium digital garden.</p>
+  </div>
+
+  <!-- DELIVERABLES -->
+  <div class="mt">
+    <div class="section-label">Deliverables</div>
+    <h2>What to Submit</h2>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div class="deliverable">
+        <div class="d-num">1</div>
+        <div>
+          <div class="d-title">Style Tile</div>
+          <div class="d-desc">A dedicated page in Figma showing your chosen Color Palette, Typography pairing, spacing tokens, and brand voice. This is your design system reference.</div>
+        </div>
+      </div>
+      <div class="deliverable">
+        <div class="d-num">2</div>
+        <div>
+          <div class="d-title">3 Key Screens — High Fidelity</div>
+          <div class="d-desc">Splash Screen (Brand Feel) · Product List (with AI personalization) · Product Details (farm tracking, badges, CTA). Focus on spacing, alignment, and authentic imagery.</div>
+        </div>
+      </div>
+      <div class="deliverable">
+        <div class="d-num">3</div>
+        <div>
+          <div class="d-title">Quality Verification</div>
+          <div class="d-desc">All screens verified for 8-point grid alignment, WCAG AA contrast (≥ 4.5:1), and correct imagery direction. Run through the checklist before submitting.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLOR PALETTE -->
+  <div class="mt">
+    <div class="section-label">Visual Identity — Color</div>
+    <h2>The Psychology of Color</h2>
+    <div class="card">
+      <div class="swatch-row">
+        <div class="swatch" style="background:#4A7C3F;"></div>
+        <div>
+          <div class="swatch-name">Leaf Green &nbsp;<code style="font-size:11px;color:var(--muted)">#4A7C3F</code></div>
+          <div class="swatch-use">Primary brand color. Vitality &amp; health. Use for all primary buttons, CTAs, active icons, and key UI elements. Not neon — biological reality.</div>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#5C3D2E;"></div>
+        <div>
+          <div class="swatch-name">Earthy Brown &nbsp;<code style="font-size:11px;color:var(--muted)">#5C3D2E</code></div>
+          <div class="swatch-use">Secondary color. Stability. Soil-to-table connection that grounds the experience. Use for headings, body text, and structural elements.</div>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#C8A84B;"></div>
+        <div>
+          <div class="swatch-name">Harvest Gold &nbsp;<code style="font-size:11px;color:var(--muted)">#C8A84B</code></div>
+          <div class="swatch-use">Accent color. Sunlight &amp; quality. Used <strong>sparingly</strong> for delight moments — loading rings, highlights, certifications. Never for backgrounds.</div>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#F5F0E8; border: 1px solid #DDD8CE;"></div>
+        <div>
+          <div class="swatch-name">Cream White &nbsp;<code style="font-size:11px;color:var(--muted)">#F5F0E8</code></div>
+          <div class="swatch-use">Background tone. Warm and organic — never pure white. Creates a premium, paper-like feel that evokes natural materials.</div>
+        </div>
+      </div>
+      <div class="swatch-row" style="border:none; padding-bottom:0;">
+        <div class="swatch" style="background:#E74C3C; position:relative; display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:28px; color:white; font-weight:900; line-height:1;">✕</span>
+        </div>
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <span class="swatch-name" style="text-decoration:line-through; color:var(--muted);">Urgent Reds</span>
+            <span class="badge-red">✕ Anti-Pattern</span>
+          </div>
+          <div class="swatch-use" style="color:#922B21;">Avoid completely. Triggers fast-food panic and destroys the premium organic feel. No warm reds, orange-reds, or tomato tones in primary UI.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="mt">
+    <div class="section-label">Visual Identity — Typography</div>
+    <h2>Typography &amp; Voice</h2>
+    <div class="card-grid2">
+      <div class="card">
+        <div class="font-sub">Editorial Authority</div>
+        <div class="font-demo font-serif">Playfair Display</div>
+        <div style="font-size:11px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px;">Headline Font · Serif</div>
+        <div class="font-use">Old World Heritage. High contrast and refined curves signal that content is curated, not just listed. Use for: screen titles, product names, hero headings, pull quotes.</div>
+      </div>
+      <div class="card">
+        <div class="font-sub">Digital Utility</div>
+        <div class="font-demo font-sans">Montserrat</div>
+        <div style="font-size:11px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px;">Body Font · Sans-Serif</div>
+        <div class="font-use">New World Utility. Geometric and scalable. Ensures friction-free reading of nutrition data and pricing. Use for: all UI copy, prices, labels, body text, navigation.</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px; background:var(--brown-light); border-color:#DDD0C5;">
+      <h3 style="color:var(--brown); margin-bottom:10px;">Product Card Example</h3>
+      <div style="border:1px solid var(--border); border-radius:10px; overflow:hidden; max-width:240px; background:white;">
+        <div style="height:100px; background:linear-gradient(135deg,#EAF3DE,#C0DD97); display:flex; align-items:center; justify-content:center; font-size:40px;">🍅</div>
+        <div style="padding:12px 14px;">
+          <div style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--green-dark); margin-bottom:4px;">Heirloom Tomatoes</div>
+          <div style="width:28px; height:2px; background:var(--green); margin-bottom:8px; border-radius:2px;"></div>
+          <div style="font-size:13px; color:var(--muted);">$4.99 / lb &nbsp;·&nbsp; 50 calories</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8-POINT GRID -->
+  <div class="mt">
+    <div class="section-label">Structural Foundation</div>
+    <h2>The 8-Point Grid</h2>
+    <div class="card">
+      <p style="font-size:14px; color:var(--muted); margin-bottom:16px;"><strong style="color:var(--text);">The Rule:</strong> All dimensions, margins, and padding must be multiples of 8. This ensures pixel-perfect scaling across iPhone/Android densities (@1x, @2x, @3x) and creates a subconscious professional rhythm.</p>
+      <div class="grid-demo">
+        <div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div>
+        <div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div><div class="grid-col"></div>
+      </div>
+      <div class="spacing-chips">
+        <span class="chip">8px</span>
+        <span class="chip">16px</span>
+        <span class="chip">24px</span>
+        <span class="chip">32px</span>
+        <span class="chip">48px</span>
+        <span class="chip">64px</span>
+      </div>
+      <p style="font-size:13px; color:var(--muted); margin-top:12px;">In Figma: set grid columns to 4 with 16px gutters and 16px margins. Every element's width, height, and spacing must snap to one of the values above.</p>
+    </div>
+  </div>
+
+  <!-- 3 SCREENS -->
+  <div class="mt">
+    <div class="section-label">The 3 Key Screens</div>
+    <h2>What to Design</h2>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+
+      <!-- Screen 1 -->
+      <div class="screen-box">
+        <div class="screen-header">
+          <div class="screen-dot"></div>
+          <div class="screen-dot"></div>
+          <div class="screen-dot"></div>
+          &nbsp; Screen 1 — Splash Screen
+        </div>
+        <div class="screen-body">
+          <div class="screen-tag">Brand Feel</div>
+          <div class="screen-item"><div class="dot"></div><div>Full-screen hero with North Window Light imagery (soil, textures, natural produce)</div></div>
+          <div class="screen-item"><div class="dot"></div><div>Brand name in Playfair Display, large — with the Leaf Green / Cream palette</div></div>
+          <div class="screen-item"><div class="dot"></div><div>Tagline in Montserrat (e.g. "From Soil to Screen. Freshness Delivered.")</div></div>
+          <div class="screen-item"><div class="dot"></div><div>Single CTA button: "Shop Now" or "Explore" — Leaf Green, 48px tall</div></div>
+          <div class="screen-item"><div class="dot"></div><div>Minimal UI — no clutter. Let the imagery and typography carry the brand feel</div></div>
+        </div>
+      </div>
+
+      <!-- Screen 2 -->
+      <div class="screen-box">
+        <div class="screen-header">
+          <div class="screen-dot"></div>
+          <div class="screen-dot"></div>
+          <div class="screen-dot"></div>
+          &nbsp; Screen 2 — Product List
+        </div>
+        <div class="screen-body">
+          <div class="screen-tag">Shop &amp; Discover</div>
+          <div class="screen-item"><div class="dot"></div><div>Search bar at top with category filters (Vegetables, Fruits, Dairy, etc.)</div></div>
+          <div class="screen-item"><div class="dot"></div><div>AI Personalization Banner — e.g. "Rainy Day Comforts 🌧" — context-aware suggestion strip</div></div>
+          <div class="screen-item"><div class="dot"></div><div>Product cards in a 2-column grid: image + name (Playfair) + price + calories (Montserrat)</div></div>
+          <div class="screen-item"><div class="dot"></div><div>USDA Organic / Non-GMO badges on each product card as small green pills</div></div>
+          <div class="screen-item"><div class="dot"></div><div>Bookmark / Wishlist icon on cards using Harvest Gold accent</div></div>
+          <div class="screen-item"><div class="dot"></div><div>Bottom navigation: Home · Search · Orders · Profile</div></div>
+        </div>
+      </div>
+
+      <!-- Screen 3 -->
+      <div class="screen-box">
+        <div class="screen-header">
+          <div class="screen-dot"></div>
+          <div class="screen-dot"></div>
+          <div class="screen-dot"></div>
+          &nbsp; Screen 3 — Product Details
+        </div>
+        <div class="screen-body">
+          <div class="screen-tag">Trust &amp; Conversion</div>
+          <div class="screen-item"><div class="dot"></div><div>Large hero product image (North Window Light style — authentic, not studio)</div></div>
+          <div class="screen-item"><div class="dot"></div><div>Product name (Playfair, large) + origin farm, harvest date, calories/nutrition</div></div>
+          <div class="screen-item"><div class="dot"></div><div>Farm-to-Table Tracking Timeline: Harvested → Packed with Care → Out for Delivery</div></div>
+          <div class="screen-item"><div class="dot"></div><div>Digital Certification badges: USDA Organic + Non-GMO (Harvest Gold + Green)</div></div>
+          <div class="screen-item"><div class="dot"></div><div>"Add to Cart" CTA — full-width, 48px, Leaf Green — all 3 micro-interaction states</div></div>
+          <div class="screen-item"><div class="dot"></div><div>Carbon footprint / Green Delivery option visible — sustainability is non-negotiable</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRUST FEATURES -->
+  <div class="mt">
+    <div class="section-label">Trust Engine</div>
+    <h2>Essential Features to Include</h2>
+    <div class="card-grid3">
+      <div class="trust-card">
+        <div class="trust-icon">🌱</div>
+        <div class="trust-title">Farm-to-Table Tracking</div>
+        <div class="trust-desc">Visual timeline showing: Harvested → Packed → Out for Delivery. Include farm name and harvest time (e.g. Stone Barns, 8:00 AM).</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">🏅</div>
+        <div class="trust-title">Digital Certification</div>
+        <div class="trust-desc">USDA Organic and Non-GMO badge overlays on product images. Green circular badges — trust at a glance.</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">🔄</div>
+        <div class="trust-title">Flexible Subscriptions</div>
+        <div class="trust-desc">Toggle for weekly delivery subscriptions. "Skip This Week" button. Reduces friction and builds habit-forming loyalty.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUTTON STATES -->
+  <div class="mt">
+    <div class="section-label">Interaction Design</div>
+    <h2>The 'Premium' Feel — Button States</h2>
+    <div class="card">
+      <p style="font-size:14px; color:var(--muted); margin-bottom:20px;">The "Place Order" / "Add to Cart" button must have all 3 states. Micro-interactions bridge a static tool and a living service.</p>
+      <div class="btn-states">
+        <div class="btn-state">
+          <button class="btn-default">Place Order</button>
+          <div class="lbl">State 1: Default</div>
+        </div>
+        <div class="btn-arrow">→</div>
+        <div class="btn-state">
+          <div class="btn-loading">🍅</div>
+          <div class="lbl">State 2: Loading<br>(Harvest Gold ring)</div>
+        </div>
+        <div class="btn-arrow">→</div>
+        <div class="btn-state">
+          <div class="btn-success">✓</div>
+          <div class="lbl">State 3: Success<br>(White checkmark)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMAGERY -->
+  <div class="mt">
+    <div class="section-label">Imagery Direction</div>
+    <h2>North Window Light</h2>
+    <div class="img-rule">
+      <div class="img-do">
+        <div class="img-label-do">✓ Do — Authentic &amp; Raw</div>
+        <ul>
+          <li>Natural daylight, soft shadows</li>
+          <li>Visible soil, textures, imperfections</li>
+          <li>Matte finishes — no gloss</li>
+          <li>Wooden surfaces, linen backgrounds</li>
+          <li>Produce that looks like it just left the farm</li>
+        </ul>
+      </div>
+      <div class="img-dont">
+        <div class="img-label-dont">✕ Don't — Synthetic &amp; Plastic</div>
+        <ul>
+          <li>Oversaturated studio flash photography</li>
+          <li>Floating / cut-out ingredients on white</li>
+          <li>Too-perfect, processed-looking produce</li>
+          <li>Stock photo aesthetic — generic and lifeless</li>
+          <li>Harsh lighting with heavy shadows</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCESSIBILITY -->
+  <div class="mt">
+    <div class="section-label">Accessibility</div>
+    <h2>Inclusivity is Hospitality</h2>
+    <div class="card">
+      <div class="step-row">
+        <div class="step-num" style="background:var(--green);">A</div>
+        <div>
+          <div class="step-title">Contrast Ratio — minimum 4.5:1 (WCAG AA)</div>
+          <div class="step-desc">Leaf Green text on Cream White achieves ~7.2:1. Always verify with Figma's built-in contrast checker or plugins like "Contrast" or "Able". Headline text: aim for 15:1+.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num" style="background:var(--green);">B</div>
+        <div>
+          <div class="step-title">Never use color alone to convey information</div>
+          <div class="step-desc">Error states must combine: red border + error icon + error text. A colorblind user must still understand the UI without color cues.</div>
+        </div>
+      </div>
+      <div class="step-row" style="border:none;">
+        <div class="step-num" style="background:var(--green);">C</div>
+        <div>
+          <div class="step-title">Touch targets — minimum 44×44px</div>
+          <div class="step-desc">All tappable elements (buttons, icons, cards) must be at least 44×44px per Apple HIG / Google Material guidelines. This is enforced by the 8-point grid.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANTI-PATTERNS -->
+  <div class="mt-sm">
+    <div class="anti">
+      <div class="anti-x">✕</div>
+      <div class="anti-text">
+        <strong>Anti-Patterns to Avoid</strong>
+        No urgent reds · No neon greens · No cluttered cards · No studio-flash imagery · No floating cut-out produce · No generic purple-gradient AI aesthetics · No misaligned spacing (must be multiples of 8)
+      </div>
+    </div>
+  </div>
+
+  <!-- EXECUTION STEPS -->
+  <div class="mt">
+    <div class="section-label">Execution Plan</div>
+    <h2>Your First Tasks</h2>
+    <div class="card">
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Moodboard Creation</div>
+          <div class="step-desc">Curate 10–15 "North Window Light" reference images from Unsplash / Pinterest. Avoid studio perfection. Collect textures, earthy tones, and natural produce photography that feels honest.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Figma Foundation</div>
+          <div class="step-desc">New file → set 8-point grid layout → define color styles (Leaf Green, Brown, Gold, Cream) → set text styles: Playfair Display H1/H2/H3 + Montserrat Body/Label/Caption.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Style Tile Page</div>
+          <div class="step-desc">One page in Figma showing: color swatches with names, font specimens at different sizes, button states, card examples, spacing scale. This is your design system — build it first.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Design 3 Screens</div>
+          <div class="step-desc">Use iPhone 14 Pro frame (390×844px). Splash → Product List → Product Details. Apply your style tile consistently. Check every spacing value is on-grid.</div>
+        </div>
+      </div>
+      <div class="step-row" style="border:none;">
+        <div class="step-num">5</div>
+        <div>
+          <div class="step-title">Quality Review &amp; Export</div>
+          <div class="step-desc">Run the checklist below. Export each screen as PNG @2x. Share Figma link with view access + export the frames as a PDF for submission.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="mt">
+    <div class="section-label">Submission</div>
+    <h2>Quality Checklist</h2>
+    <div class="card">
+      <div class="check-row"><div class="check-icon">✓</div><span>Style Tile exported — color palette, typography, spacing scale, button states</span></div>
+      <div class="check-row"><div class="check-icon">✓</div><span>Splash Screen: hero image + brand name (Playfair) + CTA button (Leaf Green)</span></div>
+      <div class="check-row"><div class="check-icon">✓</div><span>Product List: 2-column card grid with images, Playfair names, Montserrat pricing</span></div>
+      <div class="check-row"><div class="check-icon">✓</div><span>Product Details: farm tracking timeline + certification badges + 3-state CTA button</span></div>
+      <div class="check-row"><div class="check-icon">✓</div><span>All spacing values are multiples of 8px — verified in Figma</span></div>
+      <div class="check-row"><div class="check-icon">✓</div><span>No urgent reds used anywhere in the design</span></div>
+      <div class="check-row"><div class="check-icon">✓</div><span>Images follow "North Window Light" direction — no studio flash cut-outs</span></div>
+      <div class="check-row"><div class="check-icon">✓</div><span>Contrast ratio ≥ 4.5:1 verified on all body text</span></div>
+      <div class="check-row"><div class="check-icon">✓</div><span>USDA Organic / Non-GMO trust badges visible on product screens</span></div>
+      <div class="check-row"><div class="check-icon">✓</div><span>Harvest Gold used sparingly — delight moments only, not backgrounds</span></div>
+      <div class="check-row"><div class="check-icon">✓</div><span>Figma file shared with view access link for submission</span></div>
+      <div class="check-row" style="border:none;"><div class="check-icon">✓</div><span>All 3 screens exported as PNG @2x (or PDF of the full Figma frame)</span></div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<div class="footer">
+  <p style="margin-bottom:6px; color:rgba(255,255,255,0.85); font-weight:600;">DecodeLabs · UI/UX Industrial Training · Batch 2026</p>
+  <p>📞 +91 89330 06408 &nbsp;·&nbsp; ✉️ <a href="mailto:decodelabs.tech@gmail.com">decodelabs.tech@gmail.com</a> &nbsp;·&nbsp; 🌐 <a href="https://www.decodelabs.tech" target="_blank">www.decodelabs.tech</a></p>
+  <p style="margin-top:8px; font-size:11px; color:rgba(255,255,255,0.35);">Project 3 — The Visual Identity &nbsp;|&nbsp; Complete and verify before unlocking next week's projects.</p>
+</div>
+
+</body>
+</html>
